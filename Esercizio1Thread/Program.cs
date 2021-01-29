@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Esercizio1Thread
@@ -11,8 +12,14 @@ namespace Esercizio1Thread
         static void Main(string[] args)
         {
             int[] array = new int[100];
+            RiempiArray(ref array);
             Console.WriteLine("Inserisci numero da cercare");
             int n = int.Parse(Console.ReadLine());
+            Thread thread = new Thread(() => RicercaNumero(n, array));
+            thread.Start();
+            Console.WriteLine("Inserisci un numero da cercare:");
+            int n1 = int.Parse(Console.ReadLine());
+            RicercaNumero(n1,array);
 
             Console.ReadLine();
         }
@@ -24,18 +31,16 @@ namespace Esercizio1Thread
                 {
                     Console.WriteLine($"Trovato {array[i]} in posizione {i}");
                 }
-                Console.WriteLine("Ricerca Completata");
+            
             }
 
         }
-        static void RiempiArray(int[] numeri)
+        static void RiempiArray(ref int[] array)
         {
-
-
             Random r = new Random();
             for (int i = 0; i < 100; i++)
             {
-                numeri[i] = r.Next(0, 100);
+                array[i] = r.Next(0, 100);
 
             }
 
