@@ -21,6 +21,7 @@ namespace Esercizio1Thread
             int n1 = int.Parse(Console.ReadLine());
             RicercaNumero(n1,array);
 
+
             Console.ReadLine();
         }
         public static void RicercaNumero(int n, int[] array)
